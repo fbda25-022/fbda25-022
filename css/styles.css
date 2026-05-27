@@ -1,34 +1,44 @@
-/* === VARIABLES === */
+/* ===================================================
+   GLOBAL DESIGN SYSTEM & STYLE VARIABLES
+   =================================================== */
+/* Color palette used throughout the site for consistency */
 :root {
-    --primary: #75AADB;
-    --secondary: #FFFFFF;
-    --accent: #000000;
-    --dark: #1A1A1A;
-    --light: #F4F6F9;
-    --white: #FFFFFF;
+    --primary: #75AADB;      /* Main blue for navbar, buttons, accents */
+    --secondary: #FFFFFF;    /* Secondary background color */
+    --accent: #000000;       /* Dark accent for text and hover states */
+    --dark: #1A1A1A;         /* Dark text color */
+    --light: #F4F6F9;        /* Light background for sections */
+    --white: #FFFFFF;        /* Pure white */
 }
 
-/* === GLOBAL / RESET === */
+/* ===================================================
+   GLOBAL RESET & BASE STYLES
+   =================================================== */
+/* Apply box-sizing to all elements and reset default margins/padding */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* Base body styles */
 body {
     font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
     background-color: var(--light);
     color: var(--dark);
     line-height: 1.6;
-    padding-top: 70px;
+    padding-top: 70px;    /* Account for fixed navbar */
 }
 
+/* Enable smooth scroll behavior for anchor links */
 html {
     scroll-behavior: smooth;
 }
 
-/* === NAVBAR === */
-
+/* ===================================================
+   NAVIGATION BAR STYLES
+   =================================================== */
+/* Fixed navbar with drop shadow and primary blue background */
 .navbar {
     background-color: var(--primary) !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
@@ -36,96 +46,108 @@ html {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1030;
+    z-index: 1030;    /* Keep navbar above all other content */
 }
 
+/* Navbar brand (logo + text) styling */
 .navbar-brand {
     font-weight: 700;
     font-size: 1.1rem;
     color: var(--white) !important;
-    /* gap-2 + d-flex is handled in HTML via Bootstrap utility classes */
 }
 
-/* === PILL NAV LINKS (rounded button style) === */
-
+/* ===================================================
+   PILL-STYLE NAVIGATION LINKS
+   =================================================== */
+/* Navigation pills styled as rounded buttons for modern look */
 .nav-pill {
     color: var(--white) !important;
     font-weight: 600;
     font-size: 0.875rem;
     padding: 0.45rem 1.1rem !important;
-    /* wider horizontal padding = pill shape */
+    /* Wider horizontal padding creates the pill shape */
     border-radius: 2rem !important;
-    /* full pill curve */
+    /* Full rounded corners */
     border: 1.5px solid transparent;
-    /* reserve space so hover doesn't shift layout */
+    /* Reserve space for border on hover to prevent layout shift */
     transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
-/* Hover: subtle outlined pill */
+/* Hover state: subtle outlined pill with light background */
 .nav-pill:hover {
     background-color: rgba(255, 255, 255, 0.12);
     border-color: rgba(255, 255, 255, 0.35);
     color: var(--white) !important;
 }
 
-/* Active: solid filled pill */
+/* Active state: solid black pill with white text */
 .nav-pill.active {
     background-color: var(--accent) !important;
-    /* black accent fill */
     border-color: var(--white) !important;
     color: var(--white) !important;
-    /* white text on black */
 }
 
-/* Active hover: slightly darker accent */
+/* Active hover state: slightly darker accent */
 .nav-pill.active:hover {
     filter: brightness(0.9);
 }
 
-/* === MOBILE: stack pills with spacing on collapse === */
+/* ===================================================
+   MOBILE NAVIGATION: SIDE MENU ON COLLAPSE
+   =================================================== */
+/* Converts navbar menu to a side drawer on mobile screens */
 @media (max-width: 991.98px) {
+    /* Toggler button styles */
     .navbar-toggler {
         z-index: 1050;
         position: relative;
     }
 
+    /* Side drawer navigation menu */
     .navbar-collapse {
         position: fixed;
         top: 0;
-        right: -250px;
+        right: -250px;           /* Hidden off-screen by default */
         width: 250px;
         height: 100vh;
         background-color: var(--primary);
         transition: right 0.3s ease-in-out;
         z-index: 1045;
-        padding-top: 70px;
+        padding-top: 70px;       /* Below navbar */
         padding-left: 15px;
         display: block !important;
-        visibility: hidden;
+        visibility: hidden;      /* Prevent interaction when hidden */
     }
     
+    /* Show state: slide menu in from right */
     .navbar-collapse.show {
         right: 0;
         visibility: visible;
     }
 
+    /* Navigation list spacing and layout */
     .navbar-nav {
         padding: 0.5rem 0;
         gap: 0.4rem !important;
     }
 
+    /* Pills adapt to mobile layout */
     .nav-pill {
         display: inline-block;
         width: fit-content;
     }
 }
 
-/* === HERO SECTION === */
+/* ===================================================
+   HERO SECTION: WELCOME BANNER
+   =================================================== */
+/* Large introductory banner with text and image */
 .hero-section {
     background-color: var(--white);
     padding: 60px 20px;
 }
 
+/* Hero container with two-column layout (text + image) */
 .hero-card {
     display: flex;
     border-radius: 10px;
@@ -137,12 +159,14 @@ html {
     min-height: 350px;
 }
 
+/* Left column: hero text and buttons */
 .hero-text {
     flex: 1;
     padding: 20px;
     text-align: left;
 }
 
+/* Hero heading */
 .hero-text h1 {
     font-size: 2.5em;
     font-weight: bold;
@@ -151,6 +175,7 @@ html {
     text-align: left;
 }
 
+/* Hero description paragraph */
 .hero-text p {
     font-size: 1.2em;
     color: var(--white);
@@ -158,13 +183,17 @@ html {
     opacity: 0.85;
 }
 
+/* Button container with gap spacing */
 .hero-buttons {
     display: flex;
     gap: 15px;
     margin-top: 10px;
 }
 
-/* Base button styles to reduce duplication */
+/* ===================================================
+   REUSABLE BUTTON STYLES
+   =================================================== */
+/* Base button styles to reduce code duplication */
 .btn-primary-custom,
 .btn-outline-custom {
     padding: 10px 20px;
@@ -176,6 +205,7 @@ html {
     display: inline-block;
 }
 
+/* Solid primary button (filled background) */
 .btn-primary-custom {
     background-color: var(--accent);
     color: var(--white);
@@ -184,11 +214,11 @@ html {
 
 .btn-primary-custom:hover {
     background-color: #333333;
-    /* Darker black */
     color: var(--white);
-    transform: translateY(-2px);
+    transform: translateY(-2px);    /* Subtle lift effect */
 }
 
+/* Outline button (transparent background, border) */
 .btn-outline-custom {
     background-color: transparent;
     color: var(--white);
@@ -198,9 +228,10 @@ html {
 .btn-outline-custom:hover {
     background-color: var(--accent);
     color: var(--white);
-    transform: translateY(-2px);
+    transform: translateY(-2px);    /* Subtle lift effect */
 }
 
+/* Right column: hero image */
 .hero-image {
     flex: 1;
     display: flex;
@@ -209,16 +240,18 @@ html {
     align-self: stretch;
 }
 
+/* Image styling with proper scaling */
 .hero-image img {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover;      /* Maintains aspect ratio and fills container */
     display: block;
 }
 
+/* Responsive: stack columns on mobile */
 @media (max-width: 768px) {
     .hero-card {
         flex-direction: column;
@@ -230,9 +263,10 @@ html {
     }
 }
 
-/* === SHARED CARD BASE === */
-/* overview-card and news-card share identical layout, shadow, and hover —
-   .card-base holds the common rules; each card class adds only what differs */
+/* ===================================================
+   SHARED CARD BASE STYLES
+   =================================================== */
+/* Common styles for overview and news cards to avoid duplication */
 .card-base {
     background-color: var(--white);
     padding: 20px;
@@ -246,29 +280,36 @@ html {
     height: 100%;
 }
 
+/* Hover effect: slight scale up and enhanced shadow */
 .card-base:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Paragraph styling within cards */
 .card-base p {
     font-size: 1em;
     color: var(--dark);
     opacity: 0.85;
 }
 
+/* Heading styling within cards */
 .card-base h3 {
     font-size: 1.5em;
     margin-bottom: 10px;
     color: var(--primary);
 }
 
-/* === MINISTRY OVERVIEW === */
+/* ===================================================
+   MINISTRY OVERVIEW SECTION
+   =================================================== */
+/* Container for mission, vision, and values cards */
 .overview-section {
     padding: 60px 20px;
     background-color: var(--light);
 }
 
+/* Section heading area */
 .section-header {
     text-align: center;
     margin-bottom: 40px;
@@ -285,6 +326,7 @@ html {
     opacity: 0.7;
 }
 
+/* Responsive grid layout for cards */
 .overview-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -297,22 +339,27 @@ html {
     border-radius: 10px;
 }
 
-/* overview-card: centres content (text-align: center is the only diff from card-base) */
+/* Overview cards: centered text layout */
 .overview-card {
     text-align: center;
 }
 
+/* Icon styling in overview cards */
 .overview-icon {
     margin-bottom: 15px;
 }
 
-/* === NEWS SECTION === */
+/* ===================================================
+   NEWS/ANNOUNCEMENTS SECTION
+   =================================================== */
+/* Container for latest news cards */
 .news-section {
     padding: 40px 20px 60px 20px;
     background-color: var(--white);
     border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
+/* Responsive grid for news cards */
 .news-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -324,15 +371,17 @@ html {
     padding: 20px;
 }
 
-/* news-card: left-aligned text; p grows to push button down */
+/* News cards: left-aligned with flexible content */
 .news-card {
     text-align: left;
 }
 
+/* Paragraph in news cards grows to push button to bottom */
 .news-card p {
     flex-grow: 1;
 }
 
+/* Custom news card button styling */
 .news-card .btn-outline-custom {
     align-self: flex-start;
     margin-top: 15px;
@@ -351,6 +400,7 @@ html {
     text-decoration: none;
 }
 
+/* Date label for news items */
 .news-date {
     font-size: 0.85em;
     text-transform: uppercase;
@@ -360,7 +410,10 @@ html {
     margin-bottom: 10px;
 }
 
-/* === FOOTER === */
+/* ===================================================
+   FOOTER SECTION
+   =================================================== */
+/* Main footer container with primary background */
 .footer {
     background-color: var(--primary);
     color: var(--white);
@@ -373,6 +426,7 @@ html {
     margin: 0 auto;
 }
 
+/* Grid layout for footer columns */
 .footer-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -380,6 +434,7 @@ html {
     margin-bottom: 40px;
 }
 
+/* Footer column headings */
 .footer-column h4 {
     color: var(--accent);
     font-size: 1.2rem;
@@ -387,12 +442,14 @@ html {
     font-weight: 700;
 }
 
+/* Footer text paragraphs */
 .footer-column p {
     font-size: 0.95rem;
     margin-bottom: 10px;
     opacity: 0.9;
 }
 
+/* Footer list styling */
 .footer-column ul {
     list-style: none;
     padding: 0;
@@ -402,6 +459,7 @@ html {
     margin-bottom: 10px;
 }
 
+/* Footer links with hover effect */
 .footer-column ul li a {
     color: var(--white);
     text-decoration: none;
@@ -414,6 +472,7 @@ html {
     text-decoration: underline;
 }
 
+/* Footer bottom: copyright section */
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 20px;
@@ -425,27 +484,30 @@ html {
     opacity: 0.7;
 }
 
-/* Responsive adjustment */
+/* Mobile responsive footer */
 @media (max-width: 768px) {
     .footer-grid {
         text-align: center;
     }
 }
 
-/* Fade-in base state */
+/* ===================================================
+   FADE-IN ANIMATIONS (Scroll-triggered)
+   =================================================== */
+/* Initial state: invisible and slightly below */
 .fade-in {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-/* Visible state triggered by JS */
+/* Visible state: triggered by JavaScript when element enters viewport */
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Stagger delays for cards */
+/* Staggered animation timing for sequential reveal effect */
 .fade-in:nth-child(2) {
     transition-delay: 0.15s;
 }
@@ -454,17 +516,19 @@ html {
     transition-delay: 0.3s;
 }
 
-/* === Team Minister Section === */
-
+/* ===================================================
+   TEAM/MINISTER SECTION
+   =================================================== */
+/* Container for minister profile */
 .minister-section {
     background-color: var(--white);
     padding: 60px 20px;
 }
 
+/* Card with two-column layout (image + info) */
 .minister-card {
     display: flex;
     flex-wrap: wrap;
-    /* Allows wrapping on smaller screens */
     gap: 30px;
     border-radius: 12px;
     max-width: 1200px;
@@ -472,51 +536,49 @@ html {
     padding: 40px;
     background-color: var(--light);
     align-items: center;
-    /* Vertically centers text and image */
 }
 
+/* Image column */
 .minister-image {
     flex: 1;
     min-width: 300px;
-    /* Prevents image from getting too small */
 }
 
+/* Minister profile photo */
 .minister-photo {
     width: 100%;
     height: auto;
     border-radius: 8px;
     object-fit: cover;
-    /* Ensures image isn't stretched */
 }
 
+/* Info column: takes more space than image */
 .minister-info {
     flex: 2;
-    /* Gives more room to the text than the image */
     text-align: left;
 }
 
+/* Minister title/position */
 .minister-title {
     font-size: 1.5em;
     color: var(--primary);
     font-weight: bold;
     margin-bottom: 15px;
     font-style: italic;
-    /* Combined the two rules here */
 }
 
+/* Minister biography text */
 .minister-bio {
     font-size: 0.95em;
-    /* Slightly increased for readability */
     color: var(--dark);
     line-height: 1.6;
     opacity: 0.85;
 }
 
-/* Tablet/Mobile adjustment */
+/* Mobile: stack layout vertically */
 @media (max-width: 768px) {
     .minister-card {
         flex-direction: column;
-        /* Stack image on top of text */
         text-align: center;
     }
 
@@ -525,6 +587,10 @@ html {
     }
 }
 
+/* ===================================================
+   HIGH-RANKING OFFICERS SECTION
+   =================================================== */
+/* Container section for officers display */
 .high-ranking-officers {
     background-color: var(--light);
     padding: 60px 20px;
@@ -537,23 +603,22 @@ html {
     margin-bottom: 10px;
 }
 
+/* Flexbox container for officer cards */
 .officers-container {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    /* Align to top so cards don't jump */
     flex-wrap: wrap;
     padding: 60px 20px;
-    /* Extra top padding for the overlapping images */
 }
 
+/* Individual officer card: expands on hover */
 .officers-card {
     position: relative;
     width: 300px;
     height: 250px;
-    /* Starting height */
     background-color: var(--white);
     margin: 40px 20px;
     padding: 20px;
@@ -566,27 +631,26 @@ html {
     border-radius: 15px;
 }
 
-/* On Hover: Expand the card */
+/* Hover state: expand card height to show full biography */
 .officers-card:hover {
     height: 450px;
 }
 
+/* Officer profile image container */
 .officers-card .officer-images {
     position: relative;
     width: 150px;
-    /* Smaller, more manageable size */
     height: 150px;
-    top: -75px;
-    /* Pulls half the image out of the card */
-    margin-bottom: -60px;
-    /* Offset the space taken by the pull-up */
+    top: -75px;                  /* Pull image up out of card */
+    margin-bottom: -60px;        /* Compensate for pulled-up image */
 }
 
+/* Officer circular photo */
 .officer-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 50%;          /* Circle shape */
     border: 5px solid var(--white);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
@@ -596,6 +660,7 @@ html {
     margin-top: 10px;
 }
 
+/* Officer title/position text */
 .officer-title {
     color: var(--primary);
     font-weight: bold;
@@ -603,13 +668,13 @@ html {
     margin-bottom: 15px;
 }
 
-/* Hide bio initially, show on hover */
+/* Officer biography: hidden by default, shown on hover */
 .officer-bio {
     opacity: 0;
     transition: 0.3s;
     font-size: 0.85rem;
     line-height: 1.4;
-    visibility: hidden;
+    visibility: hidden;          /* Prevent interaction when hidden */
 }
 
 .officers-card:hover .officer-bio {
@@ -617,7 +682,7 @@ html {
     visibility: visible;
 }
 
-/* Responsive adjustments */
+/* Mobile responsive: stack cards vertically */
 @media (max-width: 768px) {
     .officers-container {
         flex-direction: column;
@@ -627,43 +692,42 @@ html {
     .officers-card {
         width: 80%;
         height: auto;
-        /* Allow height to adjust based on content */
     }
 
     .officer-images {
         top: -75px;
-        /* Keep the image pull-up consistent */
     }
 }
 
-/* === Services Section === */
-/* Layout Container */
+/* ===================================================
+   SERVICES SECTION
+   =================================================== */
+/* Main content wrapper with max width */
 .content-wrapper {
     max-width: 1100px;
     margin: 0 auto;
     padding: 40px 20px;
 }
 
+/* Introductory text section */
 .intro-text {
     text-align: center;
     margin-bottom: 50px;
 }
 
-/* The 2x2 Grid */
+/* 2x2 Grid layout for service cards */
 .services-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* Two equal columns */
     gap: 40px;
     margin-bottom: 60px;
 }
 
-/* Service Cards */
+/* Individual service card */
 .service-card {
     background: #ffffff;
     border: 1px solid #ddd;
-    border-radius: 50px;
-    /* Large rounding */
+    border-radius: 50px;           /* Large rounding for pill effect */
     padding: 40px;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -672,6 +736,7 @@ html {
     align-items: center;
 }
 
+/* Service icon/logo container */
 .card-logo {
     width: 80px;
     height: 80px;
@@ -682,6 +747,7 @@ html {
     align-items: center;
 }
 
+/* Action button in service cards */
 .btn-action {
     display: inline-block;
     background-color: var(--primary);
@@ -689,8 +755,7 @@ html {
     padding: 10px 25px;
     border-radius: 6px;
     text-decoration: none;
-    margin-top: auto;
-    /* Keeps buttons aligned if text length varies */
+    margin-top: auto;            /* Pushes button to bottom */
 }
 
 .btn-action:hover {
@@ -698,7 +763,7 @@ html {
     color: white;
 }
 
-/* GEMVAS Box */
+/* GEMVAS special information box */
 .gemvas-box {
     border: 1px solid #ccc;
     background-color: var(--secondary);
@@ -715,30 +780,36 @@ html {
     margin-bottom: 15px;
 }
 
-/* Responsive: Stack cards on smaller screens */
+/* Mobile: single column layout */
 @media (max-width: 768px) {
     .services-grid {
         grid-template-columns: 1fr;
     }
 }
 
-/* === FEEDBACK SECTION === */
+/* ===================================================
+   FEEDBACK FORM SECTION
+   =================================================== */
+/* Container for feedback section */
 .feedback-section {
     padding: 60px 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
+/* Form group spacing */
 .feedback-form .form-group {
     margin-bottom: 20px;
 }
 
+/* Form labels */
 .feedback-form label {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
 }
 
+/* Input fields and textarea */
 .feedback-form input,
 .feedback-form textarea {
     width: 100%;
@@ -749,11 +820,13 @@ html {
     font-size: 1em;
 }
 
+/* Textarea specific styling */
 .feedback-form textarea {
     height: 150px;
     resize: vertical;
 }
 
+/* Submit button */
 .feedback-form .btn-submit {
     background-color: var(--primary);
     color: var(--white);
@@ -773,13 +846,17 @@ html {
     color: var(--dark);
 }
 
-/* === REPORTS SECTION === */
+/* ===================================================
+   REPORTS SECTION
+   =================================================== */
+/* Main reports container */
 .reports-section {
     padding: 60px 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
+/* Reports section header */
 .reports-header {
     margin-bottom: 40px;
 }
@@ -798,6 +875,7 @@ html {
     line-height: 1.6;
 }
 
+/* Grid of financial cards */
 .financial-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -805,6 +883,7 @@ html {
     margin-bottom: 60px;
 }
 
+/* Individual financial card */
 .fin-card {
     background: var(--white);
     border: 1px solid #75AADB;
@@ -821,6 +900,7 @@ html {
     font-weight: normal;
 }
 
+/* Financial amount display */
 .fin-card .amount {
     font-size: 1.8em;
     font-weight: bold;
@@ -828,18 +908,21 @@ html {
     margin-bottom: 10px;
 }
 
+/* Period/date label */
 .fin-card .period {
     font-size: 0.85em;
     color: #28a745;
     font-weight: bold;
 }
 
+/* Official documents section heading */
 .official-documents h2 {
     font-size: 1.5em;
     font-weight: bold;
     margin-bottom: 30px;
 }
 
+/* Document item row */
 .doc-item {
     display: flex;
     align-items: center;
@@ -848,6 +931,7 @@ html {
     gap: 20px;
 }
 
+/* Document icon container */
 .doc-icon {
     width: 40px;
     height: 40px;
@@ -856,24 +940,30 @@ html {
     align-items: center;
 }
 
+/* Document title */
 .doc-title {
     flex: 1;
     font-weight: bold;
     font-size: 1.1em;
 }
 
+/* Document year/date */
 .doc-year {
     color: #666;
     margin-right: 20px;
     font-size: 0.9em;
 }
 
+/* Document action buttons container */
 .doc-actions {
     display: flex;
     gap: 10px;
 }
 
-/* Base styles for document buttons, reusing properties to fix duplication */
+/* ===================================================
+   DOCUMENT BUTTON STYLES
+   =================================================== */
+/* Base styles for both primary and secondary document buttons */
 .btn-doc-primary,
 .btn-doc-secondary {
     padding: 8px 16px;
@@ -886,7 +976,7 @@ html {
     display: inline-block;
 }
 
-/* btn-doc-primary */
+/* Primary document button: filled background */
 .btn-doc-primary {
     background-color: var(--primary);
     color: var(--white);
@@ -898,7 +988,7 @@ html {
     color: var(--white);
 }
 
-/* btn-doc-secondary */
+/* Secondary document button: outline style */
 .btn-doc-secondary {
     background-color: var(--white);
     color: var(--primary);
@@ -910,6 +1000,7 @@ html {
     color: var(--white);
 }
 
+/* Mobile responsive: adjust document layout */
 @media (max-width: 768px) {
     .feedback-container {
         grid-template-columns: 1fr;
